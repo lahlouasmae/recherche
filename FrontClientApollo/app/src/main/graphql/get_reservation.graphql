@@ -1,0 +1,21 @@
+# GetReservationQuery.graphql
+query GetReservation($id: ID!) {
+    getReservation(id: $id) {
+        id
+        client {
+            id
+            firstName
+            lastName
+            email
+            phoneNumber
+        }
+        chambres {
+            id
+            typeChambre
+            prix
+            disponible
+        }
+        checkInDate
+        checkOutDate
+    }
+}

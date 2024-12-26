@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+option java_package = "ma.ensa.full_backend.stubs";
+option java_multiple_files = true;
+option java_outer_classname = "ReservationServiceProto";
+
+service ReservationService {
+  rpc CreateReservation (CreateReservationRequest) returns (CreateReservationResponse);
+  rpc GetReservation (GetReservationRequest) returns (GetReservationResponse);
+  rpc UpdateReservation (UpdateReservationRequest) returns (UpdateReservationResponse);
+  rpc DeleteReservation (DeleteReservationRequest) returns (DeleteReservationResponse);
+  rpc ListReservations (ListReservationsRequest) returns (ListReservationsResponse);
+}
+
+message Reservation {
+  int64 id = 1;
+  string checkInDate = 2;
+  string checkOutDate = 3;
+  Client client = 4;
+  repeated Chambre chambres = 5;
+}
+
+message Client {
+  int64 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message Chambre {
+  int64 id = 1;
+  string typeChambre = 2;
+  bool isDisponible = 3;
+}
+
+
+message CreateReservationRequest {
+  int64 clientId = 1;
+  string checkInDate = 2;
+  string checkOutDate = 3;
+  repeated int64 chambreIds = 4;
+}
+
+message CreateReservationResponse {
+  int64 id = 1;
+  string message = 2;
+}
+
+message GetReservationRequest {
+  int64 id = 1;
+}
+
+message GetReservationResponse {
+  Reservation reservation = 1;
+}
+
+message UpdateReservationRequest {
+  int64 id = 1;
+  int64 clientId = 2;
+  string checkInDate = 3;
+  string checkOutDate = 4;
+  repeated int64 chambreIds = 5;
+}
+
+
+message UpdateReservationResponse {
+  Reservation reservation = 1; // Updated reservation details
+}
+
+message DeleteReservationRequest {
+  int64 id = 1; // ID of the reservation to delete
+}
+
+message DeleteReservationResponse {
+  string message = 1; // Optional success message
+}
+
+message ListReservationsRequest {
+  int32 page = 1;
+  int32 size = 2;
+  string sortBy = 3;
+  string direction = 4;
+}
+
+message ListReservationsResponse {
+  repeated Reservation reservations = 1;
+}
+
+enum TypeChambre {
+  TYPE_UNSPECIFIED = 0;
+  STANDARD = 1;
+  DELUXE = 2;
+  SUITE = 3;
+}

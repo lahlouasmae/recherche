@@ -1,0 +1,19 @@
+# UpdateReservationMutation.graphql
+mutation UpdateReservation($id: ID!, $input: ReservationInput!, $chambreIds: [ID!]) {
+    updateReservation(id: $id, input: $input, chambreIds: $chambreIds) {
+        id
+        client {
+            id
+            firstName
+            lastName
+        }
+        chambres {
+            id
+            typeChambre
+            prix
+            disponible
+        }
+        checkInDate
+        checkOutDate
+    }
+}

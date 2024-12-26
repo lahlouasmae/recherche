@@ -1,0 +1,23 @@
+# CreateReservationMutation.graphql
+mutation CreateReservation($input: ReservationInput!, $chambreIds: [ID!]) {
+    createReservation(input: $input, chambreIds: $chambreIds) {
+        id
+        client {
+            id
+            firstName
+            lastName
+        }
+        chambres {
+            id
+            typeChambre
+            prix
+            disponible
+        }
+        checkInDate
+        checkOutDate
+    }
+}
+
+
+
+#

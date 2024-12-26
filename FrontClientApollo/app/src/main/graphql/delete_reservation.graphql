@@ -1,0 +1,4 @@
+# DeleteReservationMutation.graphql
+mutation DeleteReservation($id: ID!) {
+    deleteReservation(id: $id)
+}
